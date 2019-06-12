@@ -25,7 +25,6 @@ def analyzeSentence(lst_sentence):
 
 def viterbi(wordBefore, wordAfter):
     '''
-
     :param wordBefore: [word,
     [
     [rate, //到达该条路径的概率
