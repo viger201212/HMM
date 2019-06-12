@@ -1,11 +1,7 @@
-import dataAnalyze
-import time
 import math
+import time
 
-mRateTransition = dataAnalyze.mRateTransition
-mRateLaunch = dataAnalyze.mRateLaunch
-lst_Part_of_Speech = dataAnalyze.lst_Part_of_Speech  # 导入模型数据
-n = len(lst_Part_of_Speech)
+import dataAnalyze
 
 
 def analyzeSentence(lst_sentence):
@@ -74,10 +70,14 @@ def pingJia(result, answer):
 
 if __name__ == "__main__":
     timeStart = time.time()
+    dataAnalyze = dataAnalyze.DataAnalyze(path="./data/train.conll", alpha=1e-9)
+    mRateTransition = dataAnalyze.mRateTransition
+    mRateLaunch = dataAnalyze.mRateLaunch
+    lst_Part_of_Speech = dataAnalyze.lst_Part_of_Speech  # 导入模型数据
+    n = len(lst_Part_of_Speech)
+    sentences = dataAnalyze.fileOpen("./data/dev.conll")
+    result = analyzeSentence(sentences)
     answer = dataAnalyze.fileOpen("./data/dev.conll")
-    result = analyzeSentence(answer)
-    answer = dataAnalyze.fileOpen("./data/dev.conll")
-    print("time cost: " + str(time.time() - timeStart))
     print("正确率: " + str(pingJia(result, answer)))
     with open("result.conll", "w", encoding="utf-8") as fp:
         for i in result:
