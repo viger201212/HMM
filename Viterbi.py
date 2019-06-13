@@ -5,11 +5,11 @@ import dataAnalyze
 
 
 def analyzeSentence(lst_sentence):
-    '''
+    """
     把输入句子解析加上tag
     :param lst_sentence:
     :return:
-    '''
+    """
     lst_sentence_result = lst_sentence.copy()
     for i in range(len(lst_sentence)):
         print("{0:%}".format(i / len(lst_sentence)))
@@ -24,7 +24,7 @@ def analyzeSentence(lst_sentence):
 
 
 def viterbi(wordBefore, wordAfter):
-    '''
+    """
     :param wordBefore: [word,
     [
     [rate, //到达该条路径的概率
@@ -33,7 +33,7 @@ def viterbi(wordBefore, wordAfter):
     ]// 所有词性都记录一条最大概率道路的路径和概率, 终点为wordBefore
     :param wordAfter: string
     :return: [wordAfter,[[rate, [ps1,ps2,ps3,...]],...] //终点为wordAfter
-    '''
+    """
     tempword = [wordAfter, []]
     for i in range(n - 1):
         if wordBefore[0] == "":
@@ -56,6 +56,12 @@ def viterbi(wordBefore, wordAfter):
 
 
 def pingJia(result, answer):
+    """
+    评价标记结果
+    :param result: 标际结果
+    :param answer: 标记答案
+    :return: 标记正确率
+    """
     count = 0
     countRight = 0
     for i in range(len(result)):

@@ -12,10 +12,10 @@ class DataAnalyze(object):
     sumLaunch = 0
 
     def fileOpen(self, path):
-        '''
+        """
          :param path: path of train data
         :return: lst_sentence: [sentence:[word:[number, word, ???, part of speech, ???, ???, ???, ???, ???, ???],],]
-        '''
+        """
         try:
             with open(path, "r", encoding="utf-8") as fp:
                 lst_sentence = fp.read().split("\n\n")
@@ -50,11 +50,11 @@ class DataAnalyze(object):
                 # tempWord2.append(word[3])
 
     def rateLaunch(self, alpha):
-        '''
+        """
         计算发射概率
         :param alpha: 加α平滑参数
         :return:
-        '''
+        """
         self.sumLaunch = len(self.dictWord)
         for i in self.mRateLaunch:
             sum0 = sum(i.values())
@@ -79,6 +79,10 @@ class DataAnalyze(object):
             json.dump(self.mRateLaunch, fp=fp, ensure_ascii=False, indent=4)
 
     def __init__(self, path="./data/train.conll", alpha=1e-6):
+        """
+        :param path: 训练数据集路径
+        :param alpha: 平滑参数
+        """
         self.alpha = alpha
         lst_sentence = self.fileOpen(path)
         try:
